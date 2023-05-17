@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:37:14 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/17 12:16:22 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/17 13:33:41 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,31 @@
 //  pthread_mutex_destroy()  pthread_mutex_lock()  pthread_mutex_unlock()
 # include <pthread.h>
 
+//  structs
+typedef struct s_philos
+{
+	int		num;
+	int		meals;
+}	t_philos;
+
+typedef struct s_program
+{
+	int			num_of_philos;
+	int			time_to_die;
+	int			time_to_eat;
+	int			time_to_sleep;
+	int			num_of_meals;
+	t_philos	*philos;
+}	t_program;
+
 //  utils/ft_arg_check.c
 int			arg_handler(int argc, char **argv);
+
+//  utils/ft_free.c
+void		free_handler(t_program *rules);
+
+//  utils/ft_init.c
+void		init_handler(char **argv, t_program *rules);
 
 //  utils/ft_numbers.c
 long int	ft_atol(char *argv);
