@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:37:14 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/17 13:33:41 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/18 17:05:42 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_philos
 {
 	int		num;
 	int		meals;
+	int		num_of_forks;
 }	t_philos;
 
 typedef struct s_program
@@ -52,7 +53,7 @@ typedef struct s_program
 	int			time_to_eat;
 	int			time_to_sleep;
 	int			num_of_meals;
-	t_philos	*philos;
+	t_philos	**philos;
 }	t_program;
 
 //  utils/ft_arg_check.c
