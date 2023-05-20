@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:36:47 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/20 13:06:29 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/20 13:07:22 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_program	program;
-	
+
 	if (arg_handler(argc, argv) == FALSE)
 		return (EXIT_FAILURE);
 	init_handler(argv, &program);

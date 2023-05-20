@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:37:14 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/19 23:26:10 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/20 13:57:23 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_philos
 	int					num_id;
 	int					meals;
 	int					dead;
+	int					can_eat;
 	pthread_t			*thread;
 	pthread_mutex_t		*fork_left;
 	pthread_mutex_t		*fork_right;
