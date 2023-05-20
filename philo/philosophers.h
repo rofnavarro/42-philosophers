@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:37:14 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/18 17:05:42 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/19 23:26:10 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,24 @@
 //  structs
 typedef struct s_philos
 {
-	int		num;
-	int		meals;
-	int		num_of_forks;
+	int					num_id;
+	int					meals;
+	int					dead;
+	pthread_t			*thread;
+	pthread_mutex_t		*fork_left;
+	pthread_mutex_t		*fork_right;
 }	t_philos;
 
 typedef struct s_program
 {
-	int			num_of_philos;
-	int			time_to_die;
-	int			time_to_eat;
-	int			time_to_sleep;
-	int			num_of_meals;
-	t_philos	**philos;
+	int					num_of_philos;
+	int					time_to_die;
+	int					time_to_eat;
+	int					time_to_sleep;
+	int					num_of_meals;
+	t_philos			**philos;
+	pthread_mutex_t		mutex_standby;
+	pthread_mutex_t		mutex_printer;
 }	t_program;
 
 //  utils/ft_arg_check.c
