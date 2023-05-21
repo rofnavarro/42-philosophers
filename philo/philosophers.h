@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:37:14 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/20 13:57:23 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/20 23:17:46 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,15 @@
 # include <pthread.h>
 
 //  structs
+typedef enum e_actions
+{
+	FORK,
+	EAT,
+	SLEEP,
+	THINK,
+	DIE
+}	t_actions;
+
 typedef struct s_philos
 {
 	int					num_id;
@@ -71,8 +80,14 @@ void		free_handler(t_program *rules);
 //  utils/ft_init.c
 void		init_handler(char **argv, t_program *rules);
 
+//  utils/ft_loop.c
+void		program_loop(t_program *program);
+
 //  utils/ft_numbers.c
 long int	ft_atol(char *argv);
 int			is_int(char *argv);
+
+//  utils/ft_print.c
+void		print_philo_action(t_program *program, int id, t_actions action);
 
 #endif

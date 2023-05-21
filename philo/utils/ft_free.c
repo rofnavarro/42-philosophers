@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:18:34 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/20 14:00:25 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/20 22:33:02 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	free_philos(t_program *program)
 	{
 		free(program->philos[i]->thread);
 		pthread_mutex_destroy(program->philos[i]->fork_left);
-		pthread_mutex_destroy(program->philos[i]->fork_right);
 		free(program->philos[i]->fork_left);
+		pthread_mutex_destroy(program->philos[i]->fork_right);
 		free(program->philos[i]->fork_right);
 		free(program->philos[i]);
 	}
