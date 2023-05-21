@@ -6,29 +6,39 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 22:38:29 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/20 23:09:45 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/21 18:05:10 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-static int	philo_died(t_program *program)
+void	*philo_routine(void *arg)
 {
-	int	i;
+	t_philos	*philos;
 
-	i = -1;
-	while (++i < program->num_of_philos)
+	philos = (t_philos *)arg;
+	while (philo_died(philos) == FALSE)
 	{
-		if (program->philos[i]->dead == TRUE)
-			return (TRUE);
+
 	}
+}
+
+static int	philo_died(t_philos *philos)
+{
+	if (philos->dead == TRUE)
+		return (TRUE);
 	return (FALSE);
 }
 
 void	program_loop(t_program *program)
 {
-	while (philo_died(program) == FALSE)
-	{
-		pthread_
-	}
+	int	i;
+
+	i = -1;
+	while (++i < program->num_of_philos)
+		pthread_create(program->philos[i]->thread, NULL, &philo_routine, \
+		(void *)program->philos[i]);
+	i = -1;
+	while (++i < program->num_of_philos)
+		pthread_join(program->philos[i]->thread, NULL);
 }

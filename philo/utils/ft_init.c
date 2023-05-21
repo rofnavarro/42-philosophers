@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 12:34:34 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/20 22:43:45 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/21 17:50:28 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ void	init_philos(t_program *program)
 	{
 		program->philos[i] = (t_philos *)malloc(sizeof(t_philos));
 		program->philos[i]->num_id = i + 1;
-		program->philos[i]->meals = program->num_of_meals;
+		program->philos[i]->time_to_die = program->time_to_die;
+		program->philos[i]->time_to_eat = program->time_to_eat;
+		program->philos[i]->time_to_sleep = program->time_to_sleep;
+		program->philos[i]->num_of_meals = program->num_of_meals;
 		program->philos[i]->dead = FALSE;
 		program->philos[i]->can_eat = FALSE;
 		program->philos[i]->thread = malloc(sizeof(pthread_t));

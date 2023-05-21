@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:37:14 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/20 23:17:46 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/21 17:59:08 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ typedef enum e_actions
 typedef struct s_philos
 {
 	int					num_id;
-	int					meals;
+	int					time_to_die;
+	int					time_to_eat;
+	int					time_to_sleep;
+	int					num_of_meals;
 	int					dead;
 	int					can_eat;
 	pthread_t			*thread;
@@ -81,6 +84,7 @@ void		free_handler(t_program *rules);
 void		init_handler(char **argv, t_program *rules);
 
 //  utils/ft_loop.c
+void		*philo_routine(void *arg);
 void		program_loop(t_program *program);
 
 //  utils/ft_numbers.c
