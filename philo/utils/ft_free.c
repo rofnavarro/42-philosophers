@@ -6,37 +6,43 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:18:34 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/20 22:33:02 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/21 22:31:16 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-void	free_philos(t_program *program)
+void	free_philos(t_philos **philos)
+{
+	int	i;
+	int	total;
+
+	total = philos[0]->total_of_philos;
+	i = -1;
+	while (++i < total)
+	{
+		free(philos[i]->thread);
+		free(philos[i]);
+	}
+	free(philos);
+}
+
+void	philos_mutex_destroy(t_philos **philos)
 {
 	int	i;
 
 	i = -1;
-	while (++i < program->num_of_philos)
+	while (++i < philos[0]->total_of_philos)
 	{
-		free(program->philos[i]->thread);
-		pthread_mutex_destroy(program->philos[i]->fork_left);
-		free(program->philos[i]->fork_left);
-		pthread_mutex_destroy(program->philos[i]->fork_right);
-		free(program->philos[i]->fork_right);
-		free(program->philos[i]);
+		pthread_mutex_destroy(&philos[i]->fork_left);
+		pthread_mutex_destroy(&philos[i]->fork_right);
+		pthread_mutex_destroy(&philos[i]->mutex_handler);
+		pthread_mutex_destroy(&philos[i]->mutex_printer);
 	}
-	free(program->philos);
 }
 
-void	program_mutex_destroy(t_program *program)
+void	free_handler(t_philos **philos)
 {
-	pthread_mutex_destroy(&program->mutex_printer);
-	pthread_mutex_destroy(&program->mutex_standby);
-}
-
-void	free_handler(t_program *program)
-{
-	free_philos(program);
-	program_mutex_destroy(program);
+	// philos_mutex_destroy(philos);
+	free_philos(philos);
 }

@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:36:47 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/21 17:58:34 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/21 22:26:29 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	main(int argc, char **argv)
 {
-	t_program	program;
+	t_philos	**philos;
 
 	if (arg_handler(argc, argv) == FALSE)
 		return (EXIT_FAILURE);
-	init_handler(argv, &program);
-	program_loop(&program);
-	free_handler(&program);
+	init_handler(argv, philos);
+	// program_loop(&philos);
+	free_handler(philos);
 	return (EXIT_SUCCESS);
 }

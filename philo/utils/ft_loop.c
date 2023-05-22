@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 22:38:29 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/21 18:05:10 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/21 22:25:54 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	*philo_routine(void *arg)
 	philos = (t_philos *)arg;
 	while (philo_died(philos) == FALSE)
 	{
+		if (philos->can_eat == TRUE)
 
 	}
 }
@@ -30,15 +31,15 @@ static int	philo_died(t_philos *philos)
 	return (FALSE);
 }
 
-void	program_loop(t_program *program)
+void	program_loop(t_philos **philos)
 {
 	int	i;
 
 	i = -1;
-	while (++i < program->num_of_philos)
-		pthread_create(program->philos[i]->thread, NULL, &philo_routine, \
-		(void *)program->philos[i]);
+	while (++i < philos[0]->total_of_philos)
+		pthread_create(philos[i]->thread, NULL, &philo_routine, \
+		(void *)philos[i]);
 	i = -1;
-	while (++i < program->num_of_philos)
-		pthread_join(program->philos[i]->thread, NULL);
+	while (++i < philos[0]->total_of_philos)
+		pthread_join(philos[i]->thread, NULL);
 }

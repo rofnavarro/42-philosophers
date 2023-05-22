@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:37:14 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/21 17:59:08 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/21 22:27:17 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,48 +50,40 @@ typedef enum e_actions
 
 typedef struct s_philos
 {
+	int					total_of_philos;
 	int					num_id;
 	int					time_to_die;
 	int					time_to_eat;
 	int					time_to_sleep;
-	int					num_of_meals;
+	int					total_of_meals;
 	int					dead;
 	int					can_eat;
 	pthread_t			*thread;
-	pthread_mutex_t		*fork_left;
-	pthread_mutex_t		*fork_right;
+	pthread_mutex_t		fork_left;
+	pthread_mutex_t		fork_right;
+	pthread_mutex_t		mutex_handler;
+	pthread_mutex_t		mutex_printer;
 }	t_philos;
 
-typedef struct s_program
-{
-	int					num_of_philos;
-	int					time_to_die;
-	int					time_to_eat;
-	int					time_to_sleep;
-	int					num_of_meals;
-	t_philos			**philos;
-	pthread_mutex_t		mutex_standby;
-	pthread_mutex_t		mutex_printer;
-}	t_program;
 
 //  utils/ft_arg_check.c
 int			arg_handler(int argc, char **argv);
 
 //  utils/ft_free.c
-void		free_handler(t_program *rules);
+void		free_handler(t_philos **philos);
 
 //  utils/ft_init.c
-void		init_handler(char **argv, t_program *rules);
+void		init_handler(char **argv, t_philos **philos);
 
 //  utils/ft_loop.c
-void		*philo_routine(void *arg);
-void		program_loop(t_program *program);
+// void		*philo_routine(void *arg);
+// void		program_loop(t_philos **philos);
 
 //  utils/ft_numbers.c
 long int	ft_atol(char *argv);
 int			is_int(char *argv);
 
 //  utils/ft_print.c
-void		print_philo_action(t_program *program, int id, t_actions action);
+// void		print_philo_action(t_program *program, int id, t_actions action);
 
 #endif
