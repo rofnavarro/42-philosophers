@@ -6,15 +6,15 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:37:14 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/21 22:27:17 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/24 13:13:45 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
 
-# define TRUE 0
-# define FALSE 1
+# define TRUE 1
+# define FALSE 0
 
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
@@ -48,21 +48,33 @@ typedef enum e_actions
 	DIE
 }	t_actions;
 
-typedef struct s_philos
+typedef struct s_data
 {
-	int					total_of_philos;
-	int					num_id;
+	int					total_philos;
 	int					time_to_die;
 	int					time_to_eat;
 	int					time_to_sleep;
-	int					total_of_meals;
-	int					dead;
+	int					max_meals;
+	int					meals_ate;
+	int					stop;
+	struct s_philos		*philos;
+	pthread_mutex_t		print;
+	pthread_mutex_t		eat;
+	pthread_mutex_t		dead;
+	long int			time_start;
+}	t_data;
+
+
+typedef struct s_philos
+{
+	int					id;
+	int					meals;
 	int					can_eat;
-	pthread_t			*thread;
+	long int			time_last_meal;
+	t_data				*data;
+	pthread_t			thread;
 	pthread_mutex_t		fork_left;
-	pthread_mutex_t		fork_right;
-	pthread_mutex_t		mutex_handler;
-	pthread_mutex_t		mutex_printer;
+	pthread_mutex_t		*fork_right;
 }	t_philos;
 
 
@@ -70,20 +82,20 @@ typedef struct s_philos
 int			arg_handler(int argc, char **argv);
 
 //  utils/ft_free.c
-void		free_handler(t_philos **philos);
+void		free_handler(t_data *data);
 
 //  utils/ft_init.c
-void		init_handler(char **argv, t_philos **philos);
+void		init_handler(char **argv, t_data *data);
 
 //  utils/ft_loop.c
-// void		*philo_routine(void *arg);
-// void		program_loop(t_philos **philos);
 
 //  utils/ft_numbers.c
 long int	ft_atol(char *argv);
 int			is_int(char *argv);
 
 //  utils/ft_print.c
-// void		print_philo_action(t_program *program, int id, t_actions action);
+
+//  utils/ft_time.c
+long int	time_stamp(void);
 
 #endif

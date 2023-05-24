@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 12:05:05 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/17 12:16:37 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/24 13:07:01 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ static int	is_number(char *argv)
 	while (argv[i] != '\0')
 	{
 		if (argv[i] < 48 || argv[i] > 57)
-			return (FALSE);
+			return (TRUE);
 		i++;
 	}
-	return (TRUE);
+	return (FALSE);
 }
 
 long int	ft_atol(char *argv)
@@ -56,10 +56,10 @@ int	is_int(char *argv)
 {
 	long int	arg;
 
-	if (is_number(argv) == FALSE)
-		return (FALSE);
+	if (is_number(argv) == TRUE)
+		return (TRUE);
 	arg = ft_atol(argv);
 	if (arg > INT_MAX || arg < 0)
-		return (FALSE);
-	return (TRUE);
+		return (TRUE);
+	return (FALSE);
 }

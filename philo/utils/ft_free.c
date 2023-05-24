@@ -6,43 +6,34 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:18:34 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/21 22:31:16 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/24 13:07:43 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-void	free_philos(t_philos **philos)
-{
-	int	i;
-	int	total;
-
-	total = philos[0]->total_of_philos;
-	i = -1;
-	while (++i < total)
-	{
-		free(philos[i]->thread);
-		free(philos[i]);
-	}
-	free(philos);
-}
-
-void	philos_mutex_destroy(t_philos **philos)
+void	free_philos(t_data *data)
 {
 	int	i;
 
 	i = -1;
-	while (++i < philos[0]->total_of_philos)
+	while (++i < data->total_philos)
 	{
-		pthread_mutex_destroy(&philos[i]->fork_left);
-		pthread_mutex_destroy(&philos[i]->fork_right);
-		pthread_mutex_destroy(&philos[i]->mutex_handler);
-		pthread_mutex_destroy(&philos[i]->mutex_printer);
+		pthread_mutex_destroy(&(data->philos[i].fork_left));
+		pthread_mutex_destroy(data->philos[i].fork_right);
 	}
 }
 
-void	free_handler(t_philos **philos)
+void	free_data(t_data *data)
 {
-	// philos_mutex_destroy(philos);
-	free_philos(philos);
+	free(data->philos);
+	pthread_mutex_destroy(&(data->print));
+	pthread_mutex_destroy(&(data->eat));
+	pthread_mutex_destroy(&(data->dead));
+}
+
+void	free_handler(t_data *data)
+{
+	free_philos(data);
+	free_data(data);
 }
