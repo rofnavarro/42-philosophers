@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_numbers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 12:05:05 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/24 13:07:01 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:41:47 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ long int	ft_atol(char *argv)
 	return (number * signal);
 }
 
-int	is_int(char *argv)
+int	not_int(char *argv)
 {
 	long int	arg;
 

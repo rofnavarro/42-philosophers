@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:37:14 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/24 13:13:45 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:45:26 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,11 @@ void		free_handler(t_data *data);
 void		init_handler(char **argv, t_data *data);
 
 //  utils/ft_loop.c
+void		program_loop(t_data *data);
 
 //  utils/ft_numbers.c
 long int	ft_atol(char *argv);
-int			is_int(char *argv);
+int			not_int(char *argv);
 
 //  utils/ft_print.c
 

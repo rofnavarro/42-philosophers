@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_arg_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:28:30 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/24 13:06:29 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:42:16 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	check_argv(char **argv)
 	i = 0;
 	while (argv[++i])
 	{
-		if (is_int(argv[i]) == TRUE)
+		if (not_int(argv[i]) == TRUE)
 			return (TRUE);
 	}
 	return (FALSE);
