@@ -6,34 +6,32 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:18:34 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/24 13:07:43 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:31:19 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-void	free_philos(t_data *data)
+static void	free_philos(t_data *data, t_philos *philo)
 {
 	int	i;
 
 	i = -1;
 	while (++i < data->total_philos)
 	{
-		pthread_mutex_destroy(&(data->philos[i].fork_left));
-		pthread_mutex_destroy(data->philos[i].fork_right);
+		pthread_mutex_destroy(&(philo[i].fork_left));
+		pthread_mutex_destroy(philo[i].fork_right);
 	}
+	free(philo);
 }
 
-void	free_data(t_data *data)
+static void	free_data(t_data *data)
 {
-	free(data->philos);
-	pthread_mutex_destroy(&(data->print));
-	pthread_mutex_destroy(&(data->eat));
-	pthread_mutex_destroy(&(data->dead));
+	pthread_mutex_destroy(&(data->death));
 }
 
-void	free_handler(t_data *data)
+void	free_handler(t_data *data, t_philos *philo)
 {
-	free_philos(data);
+	free_philos(data, philo);
 	free_data(data);
 }

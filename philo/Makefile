@@ -6,7 +6,7 @@
 #    By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/17 11:06:31 by rferrero          #+#    #+#              #
-#    Updated: 2023/05/24 13:03:27 by rferrero         ###   ########.fr        #
+#    Updated: 2023/05/25 16:23:06 by rferrero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,9 @@ SRC						=				philosophers.c \
 										$(addprefix utils/, ft_arg_check.c \
 															ft_free.c \
 															ft_init.c \
+															ft_loop.c \
 															ft_numbers.c \
+															ft_thread.c \
 															ft_time.c)
 
 OBJ						=				$(SRC:%.c=%.o)

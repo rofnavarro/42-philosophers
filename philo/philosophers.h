@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:37:14 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/24 14:45:26 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:29:05 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,48 +55,43 @@ typedef struct s_data
 	int					time_to_eat;
 	int					time_to_sleep;
 	int					max_meals;
-	int					meals_ate;
-	int					stop;
-	struct s_philos		*philos;
-	pthread_mutex_t		print;
-	pthread_mutex_t		eat;
-	pthread_mutex_t		dead;
-	long int			time_start;
+	long long			time_start;
+	pthread_mutex_t		death;
 }	t_data;
-
 
 typedef struct s_philos
 {
 	int					id;
-	int					meals;
-	int					can_eat;
-	long int			time_last_meal;
+	int					*dead;
+	int					meals_ate;
+	long long			time_last_meal;
 	t_data				*data;
 	pthread_t			thread;
 	pthread_mutex_t		fork_left;
 	pthread_mutex_t		*fork_right;
 }	t_philos;
 
-
 //  utils/ft_arg_check.c
 int			arg_handler(int argc, char **argv);
 
 //  utils/ft_free.c
-void		free_handler(t_data *data);
+void		free_handler(t_data *data, t_philos *philo);
 
 //  utils/ft_init.c
-void		init_handler(char **argv, t_data *data);
+void		init_handler(char **argv, t_data *data, t_philos *philo);
 
 //  utils/ft_loop.c
-void		program_loop(t_data *data);
+void		*philo_routine(void *philo);
 
 //  utils/ft_numbers.c
 long int	ft_atol(char *argv);
 int			not_int(char *argv);
 
-//  utils/ft_print.c
+//  utils/ft_thread.c
+void		create_threads(t_data *data, t_philos *philo);
 
 //  utils/ft_time.c
-long int	time_stamp(void);
+long long	ft_time(void);
+void		ft_sleep(int miliseconds);
 
 #endif
