@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 12:34:34 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/25 16:35:07 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:02:33 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ void	init_data(char **argv, t_data *data)
 	if (argv[5])
 		data->max_meals = ft_atol(argv[5]);
 	else
-		data->max_meals = 0;
+		data->max_meals = -1;
 	data->time_start = ft_time();
-	pthread_mutex_init(&(data->death), NULL);
+	data->death = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+	pthread_mutex_init(data->death, NULL);
 }
 
 void	init_handler(char **argv, t_data *data, t_philos *philo)

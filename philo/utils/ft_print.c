@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/17 13:18:34 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/28 23:15:16 by rferrero         ###   ########.fr       */
+/*   Created: 2023/05/20 22:52:57 by rferrero          #+#    #+#             */
+/*   Updated: 2023/05/28 23:04:04 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-static void	free_philos(t_data *data, t_philos *philo)
+void	print_status(t_philos *philo, char *status)
 {
-	int	i;
+	long long	t;
 
-	i = -1;
-	while (++i < data->total_philos)
-	{
-		pthread_mutex_destroy(&(philo[i].fork_left));
-		pthread_mutex_destroy(philo[i].fork_right);
-	}
-	free(philo);
-}
-
-static void	free_data(t_data *data)
-{
-	pthread_mutex_destroy(data->death);
-	free(data->death);
-}
-
-void	free_handler(t_data *data, t_philos *philo)
-{
-	free_philos(data, philo);
-	free_data(data);
+	pthread_mutex_lock(philo->data->death);
+	t = ft_time() - philo->data->time_start;
+	printf("%lld %d %s", ft_time() - philo->data->time_start, \
+				philo->id, status);
+	pthread_mutex_unlock(philo->data->death);
 }
