@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_thread.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:49:18 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/28 23:14:37 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/30 23:19:06 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	create_threads(t_data *data, t_philos *philo)
 		pthread_create(&(philo[i].thread), NULL, &philo_routine, &philo[i]);
 	while (*philo->dead == FALSE)
 		is_dead(philo);
-											printf("\n\n\nchegou aqui\n\n\n");
+//											printf("\n\n\nchegou aqui\n\n\n");
 	i = -1;
 	while (++i < data->total_philos)
 		pthread_join(philo[i].thread, NULL);
