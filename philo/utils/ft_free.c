@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:18:34 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/28 23:15:16 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:20:43 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@ static void	free_philos(t_data *data, t_philos *philo)
 		pthread_mutex_destroy(&(philo[i].fork_left));
 		pthread_mutex_destroy(philo[i].fork_right);
 	}
-	free(philo);
 }
 
 static void	free_data(t_data *data)
 {
 	pthread_mutex_destroy(data->death);
-	free(data->death);
 }
 
 void	free_handler(t_data *data, t_philos *philo)
