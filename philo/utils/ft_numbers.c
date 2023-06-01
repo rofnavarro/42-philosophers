@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_numbers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 12:05:05 by rferrero          #+#    #+#             */
-/*   Updated: 2023/05/24 14:41:47 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/06/01 17:48:10 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ static int	is_number(char *argv)
 	while (argv[i] != '\0')
 	{
 		if (argv[i] < 48 || argv[i] > 57)
-			return (TRUE);
+			return (EXIT_FAILURE);
 		i++;
 	}
-	return (FALSE);
+	return (EXIT_SUCCESS);
 }
 
 long int	ft_atol(char *argv)
@@ -52,14 +52,14 @@ long int	ft_atol(char *argv)
 	return (number * signal);
 }
 
-int	not_int(char *argv)
+int	is_int(char *argv)
 {
 	long int	arg;
 
-	if (is_number(argv) == TRUE)
-		return (TRUE);
+	if (is_number(argv) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	arg = ft_atol(argv);
 	if (arg > INT_MAX || arg < 0)
-		return (TRUE);
-	return (FALSE);
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
