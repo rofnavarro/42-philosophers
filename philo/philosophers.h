@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:37:14 by rferrero          #+#    #+#             */
-/*   Updated: 2023/06/01 18:50:28 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/06/07 15:08:13 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_data
 	int					time_to_sleep;
 	int					max_meals;
 	int					meals_ate;
+	int					*dead;
 	long long			time_start;
 	pthread_mutex_t		*death;
 }	t_data;
@@ -56,7 +57,6 @@ typedef struct s_data
 typedef struct s_philos
 {
 	int					id;
-	int					*dead;
 	long long			time_last_meal;
 	t_data				*data;
 	pthread_t			thread;

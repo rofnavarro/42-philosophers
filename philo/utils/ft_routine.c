@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 22:38:29 by rferrero          #+#    #+#             */
-/*   Updated: 2023/06/01 18:55:08 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/06/07 15:15:53 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ void	*philo_routine(void *philo)
 		pthread_mutex_unlock(&philos->fork_left);
 		pthread_mutex_unlock(philos->fork_right);
 
+		pthread_mutex_lock(philos->data->death);
+		if (philos->data->dead == FALSE)
+			pthread_mutex_unlock(philos->data->death);
 		if (philos->data->max_meals != -1)
 		{
 			pthread_mutex_lock(philos->data->death);
@@ -41,5 +44,4 @@ void	*philo_routine(void *philo)
 
 		print_status(philos, "is thinking\n", CYAN);
 	}
-	return (NULL);
 }

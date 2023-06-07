@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:36:47 by rferrero          #+#    #+#             */
-/*   Updated: 2023/06/01 17:44:13 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/06/07 15:12:07 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char **argv)
 
 	if (arg_handler(argc, argv) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	data.dead = (int *)malloc(sizeof(int));
 	data.death = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
 	philo = (t_philos *)malloc(sizeof(t_philos) * ft_atol(argv[1]));
 	init_handler(argv, &data, philo);

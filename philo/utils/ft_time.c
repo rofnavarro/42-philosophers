@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 12:48:50 by rferrero          #+#    #+#             */
-/*   Updated: 2023/06/01 17:51:12 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/06/07 15:16:23 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ void	ft_sleep(int miliseconds)
 
 	t = ft_time();
 	while (ft_time() - t < (long long)miliseconds)
-		usleep(100);
+		usleep(50);
 }

@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 12:34:34 by rferrero          #+#    #+#             */
-/*   Updated: 2023/06/01 18:51:09 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/06/07 15:12:04 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	init_philos(t_data *data, t_philos *philos)
 	while (++i < data->total_philos)
 	{
 		philos[i].id = i + 1;
-		philos[i].dead = &dead;
 		philos[i].time_last_meal = ft_time();
 		philos[i].data = data;
 		pthread_mutex_init(&(philos[i].fork_left), NULL);
@@ -39,6 +38,7 @@ void	init_data(char **argv, t_data *data)
 	data->time_to_die = ft_atol(argv[2]);
 	data->time_to_eat = ft_atol(argv[3]);
 	data->time_to_sleep = ft_atol(argv[4]);
+	data->dead = FALSE;
 	if (argv[5])
 		data->max_meals = ft_atol(argv[5]);
 	else
