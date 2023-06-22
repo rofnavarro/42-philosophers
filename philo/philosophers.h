@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:37:14 by rferrero          #+#    #+#             */
-/*   Updated: 2023/06/07 15:08:13 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/06/21 16:55:28 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,24 @@
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
 
+# define LEFT ((ID_PHILO - 1) + TOTAL_PHILOS - 1) % TOTAL_PHILOS
+# define RIGHT ((ID_PHILO - 1) + 1) % TOTAL_PHILOS
+
 # define WHITE "\001\033[0;97m\002"
 # define LGREEN "\001\033[0;92m\002"
 # define CYAN "\001\033[0;93m\002"
 # define PURPLE "\001\033[0;34m\002"
 # define ORANGE "\001\033[0;94m\002"
 # define RED "\001\033[0;31m\002"
+
+//  enums
+typedef enum e_state
+{
+	HUNGRY,
+	SLEEPING,
+	THINKING,
+	DEAD
+}	t_state;
 
 //  structs
 typedef struct s_data
@@ -48,20 +60,22 @@ typedef struct s_data
 	int					time_to_eat;
 	int					time_to_sleep;
 	int					max_meals;
-	int					meals_ate;
 	int					*dead;
 	long long			time_start;
-	pthread_mutex_t		*death;
+	pthread_mutex_t		death;
+	pthread_mutex_t		critical;
 }	t_data;
 
 typedef struct s_philos
 {
-	int					id;
-	long long			time_last_meal;
 	t_data				*data;
+	t_state				state;
+	int					id;
+	int					meals_ate;
+	long long			time_last_meal;
 	pthread_t			thread;
-	pthread_mutex_t		fork_left;
-	pthread_mutex_t		*fork_right;
+	pthread_mutex_t		fork_right;
+	pthread_mutex_t		*fork_left;
 }	t_philos;
 
 //  utils/ft_arg_check.c
