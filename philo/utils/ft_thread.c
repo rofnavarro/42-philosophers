@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:49:18 by rferrero          #+#    #+#             */
-/*   Updated: 2023/06/24 00:07:36 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/06/24 13:46:14 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ static void	*philo_r(void *philos)
 	philo = (t_philos *)philos;
 	if (!(philo->id % 2))
 		usleep(10000);
-	while (is_dead(philo) == FALSE)
+	while (philo->dead->is_dead == FALSE)
 	{
 		if (ft_eating(philo))
 			return (NULL);
-		if (philo->data->max_meals != -1 && \
-			philo->meals_ate == philo->data->max_meals || is_dead(philo) == TRUE)
+		if ((philo->data->max_meals != -1 && \
+			philo->meals_ate == philo->data->max_meals) || is_dead(philo))
 			break ;
 		ft_sleeping(philo);
 		if (is_dead(philo))

@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 12:48:50 by rferrero          #+#    #+#             */
-/*   Updated: 2023/06/23 22:17:51 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/06/24 13:48:47 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	psleep(t_philos *philo, int sleep_time)
 
 	start = ft_time();
 	passed = 0;
-	while (is_dead(philo) == FALSE && passed < (long long)sleep_time)
+	while (!is_dead(philo) && passed < sleep_time)
 	{
-		if (check_if_died(philo) == TRUE)
+		if (check_if_died(philo))
 			return (TRUE);
 		usleep(2000);
 		passed = ft_time_diff(start, ft_time());
 	}
-	return (FALSE);
+	return (passed >= sleep_time);
 }

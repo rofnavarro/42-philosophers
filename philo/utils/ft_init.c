@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 12:34:34 by rferrero          #+#    #+#             */
-/*   Updated: 2023/06/24 00:07:28 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/06/24 13:33:27 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_fork	*init_fork(int size)
 	return (fork);
 }
 
-t_philos	*init_philos(t_data *data, t_fork **forks, t_death *dead)
+t_philos	*init_philos(t_data *data, t_fork **forks, t_death **dead)
 {
 	int			i;
 	t_philos	*philos;
@@ -41,21 +41,20 @@ t_philos	*init_philos(t_data *data, t_fork **forks, t_death *dead)
 		philos[i].data = data;
 		philos[i].id = i + 1;
 		philos[i].meals_ate = 0;
-		philos[i].time_last_meal = 0;
+		philos[i].time_last_meal = ft_time();
 		philos[i].fork = *forks;
-		philos[i].dead = dead;
+		philos[i].dead = *dead;
 	}
 	return (philos);
 }
 
 t_death	*init_death(void)
 {
-	t_death	*dead;
+	static t_death	dead;
 
-	dead = (t_death *)malloc(sizeof(t_death));
-	dead->is_dead = FALSE;
-	pthread_mutex_init(&dead->mutex_death, NULL);
-	return (dead);
+	dead.is_dead = FALSE;
+	pthread_mutex_init(&dead.mutex_death, NULL);
+	return (&dead);
 }
 
 t_data	init_data(char **argv)

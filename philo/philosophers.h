@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:37:14 by rferrero          #+#    #+#             */
-/*   Updated: 2023/06/24 00:07:01 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/06/24 00:18:04 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void		free_handler(t_fork *fork, t_philos *philo, t_data *data);
 
 //  utils/ft_init.c
 t_fork		*init_fork(int size);
-t_philos	*init_philos(t_data *data, t_fork **forks, t_death *dead);
+t_philos	*init_philos(t_data *data, t_fork **forks, t_death **dead);
 t_death		*init_death(void);
 t_data		init_data(char **argv);
 
