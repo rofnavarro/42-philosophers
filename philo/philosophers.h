@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:37:14 by rferrero          #+#    #+#             */
-/*   Updated: 2023/06/24 00:18:04 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/06/24 14:42:04 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_fork
 
 typedef struct s_philos
 {
-	t_data				*data;
+	t_data				data;
 	int					id;
 	int					meals_ate;
 	long long			time_last_meal;
@@ -87,7 +87,7 @@ void		free_handler(t_fork *fork, t_philos *philo, t_data *data);
 
 //  utils/ft_init.c
 t_fork		*init_fork(int size);
-t_philos	*init_philos(t_data *data, t_fork **forks, t_death **dead);
+t_philos	*init_philos(t_data *data, t_fork **forks, t_death *dead);
 t_death		*init_death(void);
 t_data		init_data(char **argv);
 
@@ -105,7 +105,7 @@ void		ft_sleeping(t_philos *philo);
 void		ft_thinking(t_philos *philo);
 
 //  utils/ft_thread.c
-int			create_threads(t_philos *philo);
+int			create_threads(t_philos **philo);
 
 //  utils/ft_time.c
 long long	ft_time(void);

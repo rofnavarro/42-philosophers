@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:36:47 by rferrero          #+#    #+#             */
-/*   Updated: 2023/06/24 13:10:17 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/06/24 14:35:39 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	data = init_data(argv);
 	dead = init_death();
-	philo = init_philos(&data, &fork, &dead);
-	if (create_threads(philo) == EXIT_FAILURE)
+	philo = init_philos(&data, &fork, dead);
+	if (create_threads(&philo) == EXIT_FAILURE)
 	{
 		printf("Failed to create a thread\n");
 		return (EXIT_FAILURE);

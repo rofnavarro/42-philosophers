@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 12:34:34 by rferrero          #+#    #+#             */
-/*   Updated: 2023/06/24 13:33:27 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/06/24 15:15:10 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_fork	*init_fork(int size)
 	return (fork);
 }
 
-t_philos	*init_philos(t_data *data, t_fork **forks, t_death **dead)
+t_philos	*init_philos(t_data *data, t_fork **forks, t_death *dead)
 {
 	int			i;
 	t_philos	*philos;
@@ -38,12 +38,11 @@ t_philos	*init_philos(t_data *data, t_fork **forks, t_death **dead)
 	i = -1;
 	while (++i < data->total_philos)
 	{
-		philos[i].data = data;
+		philos[i].data = *data;
 		philos[i].id = i + 1;
 		philos[i].meals_ate = 0;
-		philos[i].time_last_meal = ft_time();
 		philos[i].fork = *forks;
-		philos[i].dead = *dead;
+		philos[i].dead = dead;
 	}
 	return (philos);
 }

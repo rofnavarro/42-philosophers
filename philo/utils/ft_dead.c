@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dead.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:37:42 by rferrero          #+#    #+#             */
-/*   Updated: 2023/06/24 13:26:47 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/06/24 14:55:37 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	is_dead(t_philos *philo)
 {
 	if (check_if_died(philo))
 		return (TRUE);
-	if (ft_time_diff(philo->time_last_meal, ft_time() - philo->data->start) >= \
-		philo->data->time_to_die)
+	if (ft_time_diff(philo->time_last_meal, ft_time() - philo->data.start) >= \
+		philo->data.time_to_die)
 	{
 		pthread_mutex_lock(&philo->dead->mutex_death);
 		philo->dead->is_dead++;
