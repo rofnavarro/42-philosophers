@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 12:34:34 by rferrero          #+#    #+#             */
-/*   Updated: 2023/06/24 15:15:10 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/06/24 15:41:25 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ t_data	init_data(char **argv)
 		data.max_meals = ft_atol(argv[5]);
 	else
 		data.max_meals = -1;
+	data.start = ft_time();
 	return (data);
 }
