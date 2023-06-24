@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:37:14 by rferrero          #+#    #+#             */
-/*   Updated: 2023/06/21 16:55:28 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/06/24 00:07:01 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,12 @@
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
 
-# define LEFT ((ID_PHILO - 1) + TOTAL_PHILOS - 1) % TOTAL_PHILOS
-# define RIGHT ((ID_PHILO - 1) + 1) % TOTAL_PHILOS
-
 # define WHITE "\001\033[0;97m\002"
 # define LGREEN "\001\033[0;92m\002"
 # define CYAN "\001\033[0;93m\002"
 # define PURPLE "\001\033[0;34m\002"
 # define ORANGE "\001\033[0;94m\002"
 # define RED "\001\033[0;31m\002"
-
-//  enums
-typedef enum e_state
-{
-	HUNGRY,
-	SLEEPING,
-	THINKING,
-	DEAD
-}	t_state;
 
 //  structs
 typedef struct s_data
@@ -60,48 +48,68 @@ typedef struct s_data
 	int					time_to_eat;
 	int					time_to_sleep;
 	int					max_meals;
-	int					*dead;
-	long long			time_start;
-	pthread_mutex_t		death;
-	pthread_mutex_t		critical;
+	long long			start;
 }	t_data;
+
+typedef struct s_death
+{
+	int					is_dead;
+	pthread_mutex_t		mutex_death;
+}	t_death;
+
+typedef struct s_fork
+{
+	int					fork;
+	pthread_mutex_t		fork_mutex;
+}	t_fork;
 
 typedef struct s_philos
 {
 	t_data				*data;
-	t_state				state;
 	int					id;
 	int					meals_ate;
 	long long			time_last_meal;
+	t_fork				*fork;
 	pthread_t			thread;
-	pthread_mutex_t		fork_right;
-	pthread_mutex_t		*fork_left;
+	pthread_mutex_t		*print;
+	t_death				*dead;
 }	t_philos;
 
 //  utils/ft_arg_check.c
 int			arg_handler(int argc, char **argv);
 
+//  utils/ft_dead.c
+int			check_if_died(t_philos *philo);
+int			is_dead(t_philos *philo);
+
 //  utils/ft_free.c
-void		free_handler(t_data *data, t_philos *philo);
+void		free_handler(t_fork *fork, t_philos *philo, t_data *data);
 
 //  utils/ft_init.c
-void		init_handler(char **argv, t_data *data, t_philos *philo);
+t_fork		*init_fork(int size);
+t_philos	*init_philos(t_data *data, t_fork **forks, t_death *dead);
+t_death		*init_death(void);
+t_data		init_data(char **argv);
 
 //  utils/ft_numbers.c
 long int	ft_atol(char *argv);
 int			is_int(char *argv);
 
 //  utils/ft_print.c
-void		print_status(t_philos *philo, char *status, char *colour);
+void		print_status(t_philos *philo, char *str, char *collour);
+void		print_eating(t_philos *philo);
 
 //  utils/ft_routine.c
-void		*philo_routine(void *philo);
+int			ft_eating(t_philos *philo);
+void		ft_sleeping(t_philos *philo);
+void		ft_thinking(t_philos *philo);
 
 //  utils/ft_thread.c
-int			create_threads(t_data *data, t_philos *philo);
+int			create_threads(t_philos *philo);
 
 //  utils/ft_time.c
 long long	ft_time(void);
-void		ft_sleep(int miliseconds);
+long long	ft_time_diff(long long start, long long last);
+int			psleep(t_philos *philo, int sleep_time);
 
 #endif

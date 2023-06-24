@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:36:47 by rferrero          #+#    #+#             */
-/*   Updated: 2023/06/21 15:08:56 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/06/23 23:51:51 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,25 @@
 
 int	main(int argc, char **argv)
 {
+	t_fork		*fork;
 	t_data		data;
+	t_death		*dead;
 	t_philos	*philo;
 
 	if (arg_handler(argc, argv) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	data.dead = (int *)malloc(sizeof(int));
-	philo = (t_philos *)malloc(sizeof(t_philos) * ft_atol(argv[1]));
-	init_handler(argv, &data, philo);
-	if (create_threads(&data, philo) == EXIT_FAILURE)
+	fork = init_fork(ft_atol(argv[1]));
+	if (!fork)
+		return (EXIT_FAILURE);
+	data = init_data(argv);
+	dead = init_death();
+	philo = init_philos(&data, &fork, dead);
+	if (create_threads(philo) == EXIT_FAILURE)
 	{
 		printf("Failed to create a thread\n");
 		return (EXIT_FAILURE);
 	}
-	free_handler(&data, philo);
-	free(philo);
+	free_handler(fork, philo, &data);
+	free(dead);
 	return (EXIT_SUCCESS);
 }

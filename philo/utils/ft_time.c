@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 12:48:50 by rferrero          #+#    #+#             */
-/*   Updated: 2023/06/07 15:16:23 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/06/23 22:17:51 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,24 @@ long long	ft_time(void)
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
-void	ft_sleep(int miliseconds)
+long long	ft_time_diff(long long start, long long last)
 {
-	long long	t;
+	return (last - start);
+}
 
-	t = ft_time();
-	while (ft_time() - t < (long long)miliseconds)
-		usleep(50);
+int	psleep(t_philos *philo, int sleep_time)
+{
+	long long	start;
+	long long	passed;
+
+	start = ft_time();
+	passed = 0;
+	while (is_dead(philo) == FALSE && passed < (long long)sleep_time)
+	{
+		if (check_if_died(philo) == TRUE)
+			return (TRUE);
+		usleep(2000);
+		passed = ft_time_diff(start, ft_time());
+	}
+	return (FALSE);
 }

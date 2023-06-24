@@ -6,7 +6,7 @@
 #    By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/17 11:06:31 by rferrero          #+#    #+#              #
-#    Updated: 2023/06/21 18:20:23 by rferrero         ###   ########.fr        #
+#    Updated: 2023/06/23 16:49:18 by rferrero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ RM						=				rm -rf
 
 SRC						=				philosophers.c \
 										$(addprefix utils/, ft_arg_check.c \
+															ft_dead.c \
 															ft_free.c \
 															ft_init.c \
 															ft_numbers.c \

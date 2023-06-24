@@ -6,24 +6,27 @@
 /*   By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 22:52:57 by rferrero          #+#    #+#             */
-/*   Updated: 2023/06/21 17:05:11 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/06/23 16:29:06 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-void	print_status(t_philos *philo, char *status, char *colour)
+void	print_status(t_philos *philo, char *str, char *collour)
 {
-	long long	t;
+	pthread_mutex_lock(philo->print);
+	printf("%s%lld %i %s\n", collour, ft_time_diff(philo->data->start, \
+			ft_time()), philo->id, str);
+	pthread_mutex_unlock(philo->print);
+}
 
-	pthread_mutex_lock(&philo->data->death);
-	t = ft_time() - philo->data->time_start;
-
-	printf("%s%lld %d %s", colour, ft_time() - philo->data->time_start, \
-			philo->id, status);
-	pthread_mutex_unlock(&philo->data->death);
-//	}
-//	if (*philo->dead == TRUE)
-//		printf("%s%lld %d died\n", RED, ft_time() - philo->data->time_start, \
-					philo->id);
+void	print_eating(t_philos *philo)
+{
+	pthread_mutex_lock(philo->print);
+	printf("%s%lld %i %s\n", LGREEN, ft_time_diff(philo->data->start, \
+			ft_time()), philo->id, "has taken a fork");
+	printf("%s%lld %i %s\n", PURPLE, ft_time_diff(philo->data->start, \
+			ft_time()), philo->id, "is eating");
+	pthread_mutex_unlock(philo->print);
+	philo->time_last_meal = ft_time();
 }

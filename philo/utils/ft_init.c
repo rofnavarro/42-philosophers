@@ -6,49 +6,69 @@
 /*   By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 12:34:34 by rferrero          #+#    #+#             */
-/*   Updated: 2023/06/21 17:03:03 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/06/24 00:07:28 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-void	init_philos(t_data *data, t_philos *philos)
+t_fork	*init_fork(int size)
 {
-	int	i;
+	int		i;
+	t_fork	*fork;
 
+	fork = (t_fork *)malloc(sizeof(t_fork) * size);
+	if (!fork)
+		return (NULL);
+	i = -1;
+	while (++i < size)
+	{
+		fork[i].fork = 1;
+		pthread_mutex_init(&fork[i].fork_mutex, NULL);
+	}
+	return (fork);
+}
+
+t_philos	*init_philos(t_data *data, t_fork **forks, t_death *dead)
+{
+	int			i;
+	t_philos	*philos;
+
+	philos = (t_philos *)malloc(sizeof(t_philos) * data->total_philos);
 	i = -1;
 	while (++i < data->total_philos)
 	{
 		philos[i].data = data;
-		philos[i].state = HUNGRY;
 		philos[i].id = i + 1;
 		philos[i].meals_ate = 0;
-		philos[i].time_last_meal = ft_time();
-		pthread_mutex_init(&philos[i].fork_right, NULL);
-		philos[i].fork_left = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
-		philos[i].fork_left = &philos[((i + philos->data->total_philos - 1) %
-									 philos->data->total_philos)].fork_right;
+		philos[i].time_last_meal = 0;
+		philos[i].fork = *forks;
+		philos[i].dead = dead;
 	}
+	return (philos);
 }
 
-void	init_data(char **argv, t_data *data)
+t_death	*init_death(void)
 {
-	data->total_philos = ft_atol(argv[1]);
-	data->time_to_die = ft_atol(argv[2]);
-	data->time_to_eat = ft_atol(argv[3]);
-	data->time_to_sleep = ft_atol(argv[4]);
+	t_death	*dead;
+
+	dead = (t_death *)malloc(sizeof(t_death));
+	dead->is_dead = FALSE;
+	pthread_mutex_init(&dead->mutex_death, NULL);
+	return (dead);
+}
+
+t_data	init_data(char **argv)
+{
+	t_data	data;
+
+	data.total_philos = ft_atol(argv[1]);
+	data.time_to_die = ft_atol(argv[2]);
+	data.time_to_eat = ft_atol(argv[3]);
+	data.time_to_sleep = ft_atol(argv[4]);
 	if (argv[5])
-		data->max_meals = ft_atol(argv[5]);
+		data.max_meals = ft_atol(argv[5]);
 	else
-		data->max_meals = -1;
-	data->dead = FALSE;
-	data->time_start = ft_time();
-	pthread_mutex_init(&data->death, NULL);
-	pthread_mutex_init(&data->critical, NULL);
-}
-
-void	init_handler(char **argv, t_data *data, t_philos *philo)
-{
-	init_data(argv, data);
-	init_philos(data, philo);
+		data.max_meals = -1;
+	return (data);
 }
