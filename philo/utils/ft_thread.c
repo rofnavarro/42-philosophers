@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_thread.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:49:18 by rferrero          #+#    #+#             */
-/*   Updated: 2023/06/24 20:21:39 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/06/25 16:36:43 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	only_one_philo(t_philos *philo)
 {
 	if (philo->data.total_philos == 1)
 	{
-		psleep(philo, philo->data.time_to_die);
+		psleep(philo, philo->data.time_to_die * 1000);
 		return (TRUE);
 	}
 	return (FALSE);
