@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rferrero <rferrero@student.42.fr>          +#+  +:+       +#+         #
+#    By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/17 11:06:31 by rferrero          #+#    #+#              #
-#    Updated: 2023/06/23 16:49:18 by rferrero         ###   ########.fr        #
+#    Updated: 2023/06/25 14:52:26 by rferrero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME					=				philos
+NAME					=				philo
 
 CC						=				cc
 CCFLAGS					=				-Wall -Werror -Wextra
