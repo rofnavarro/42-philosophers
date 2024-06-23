@@ -46,7 +46,6 @@ To run the philosophers program, follow these steps:
    ```sh
    ./philo [number_of_philosophers] [time_to_simulation_end] [time_to_die] [time_to_eat] [time_to_sleep]
    ```
-
    Replace `[number_of_philosophers]` with the desired number of philosophers and adjust the other parameters as needed.
 
 ***
@@ -96,5 +95,4 @@ Para executar o programa philosophers, siga estas etapas:
    ```sh
    ./philo [número_de_filósofos] [tempo_de_simulação] [tempo_para_morrer] [tempo_para_comer] [tempo_para_dormir]
    ```
-
    Substitua `[número_de_filósofos]` pelo número desejado de filósofos e ajuste os outros parâmetros conforme necessário.
